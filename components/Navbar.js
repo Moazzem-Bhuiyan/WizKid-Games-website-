@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
+import logo from '../assets/Logo/wizkid logo.svg'
+import Image from 'next/image'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -45,11 +47,13 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <div className="w-10 h-10 border border-gold-dark flex items-center justify-center"
+                <div className="w-10 h-10  flex items-center justify-center"
                   style={{ borderColor: 'var(--gold-dark)' }}>
-                  <span className="font-display text-xs" style={{ color: 'var(--gold)', fontSize: '10px' }}>WK</span>
+                  <span className="font-display text-xs" style={{ color: 'var(--gold)', fontSize: '10px' }}>
+                    <Image src={logo} alt="WizKid Games" width={40} height={40} />
+                  </span>
                 </div>
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                <div className="absolute inset-0 opacity-0  transition-opacity duration-300"
                   style={{ boxShadow: '0 0 20px rgba(201,168,76,0.4)' }} />
               </div>
               <div>

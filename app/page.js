@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Mail, Twitter, Instagram, MessageCircle, TikTok, ChevronDown } from 'lucide-react'
+import { ArrowRight, Mail,  Instagram, MessageCircle, } from 'lucide-react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import FloatingRunes from '../components/FloatingRunes'
+import AnimatedLogo from '../components/AnimatedLogo/Logo'
+import { FaXTwitter } from 'react-icons/fa6'
 
 // TikTok icon (not in lucide)
 const TikTokIcon = () => (
@@ -14,7 +16,7 @@ const TikTokIcon = () => (
 )
 
 const socials = [
-  { icon: Twitter, label: 'Twitter/X', href: 'https://twitter.com/wizkidgames' },
+  { icon: FaXTwitter, label: 'Twitter/X', href: 'https://twitter.com/wizkidgames' },
   { icon: Instagram, label: 'Instagram', href: 'https://instagram.com/wizkidgames' },
   { icon: TikTokIcon, label: 'TikTok', href: 'https://tiktok.com/@wizkidgames' },
   { icon: MessageCircle, label: 'Discord', href: 'https://discord.gg/wizkidgames' },
@@ -52,7 +54,10 @@ export default function HomePage() {
       {/* ── HERO ── */}
       <section
         className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden"
-        style={{ paddingTop: '6rem' }}
+        style={{
+        paddingTop: '6rem',
+        willChange: 'transform', // 🔥 smoother render
+  }}
       >
         {/* Background layers */}
         <div className="absolute inset-0" style={{
@@ -123,6 +128,31 @@ export default function HomePage() {
             </span>
           </div>
 
+          {/* Game logo */}
+
+          {/* <div className='flex justify-center items-center'>
+                <Image
+                src={logo}
+                alt="WizKid Games"
+                width={5500}
+                height={5500}
+                className="animate-fadeInUp delay-100 mb-4 w-[80%]  "
+                style={{ animationFillMode: 'both' }}
+              />
+          </div> */}
+
+          {/* <HeroLogo/> */}
+           {/* <div className="flex justify-center items-center">
+                <Image
+                  src={logo}
+                  alt="WizKid Games"
+                  width={5500}
+                  height={5500}
+                  className="relative z-10 animate-fadeInUp delay-100 mb-4 w-[80%] drop-shadow-[0_0_40px_rgba(255,215,0,0.5)]"
+                  style={{ animationFillMode: "both" }}
+                />
+           </div> */}
+           <AnimatedLogo/>
           {/* Game title */}
           <h1
             className="animate-fadeInUp delay-200 font-display mb-6 font-bold  leading-tight"
@@ -132,8 +162,8 @@ export default function HomePage() {
               animationFillMode: 'both',
             }}
           >
-            <span className="text-gold-gradient block">Stormroot</span>
-            <span className="text-gold-gradient block">Saga</span>
+            {/* <span className="text-gold-gradient block">Stormroot</span>
+            <span className="text-gold-gradient block">Saga</span> */}
           </h1>
 
           {/* Coming soon badge */}
