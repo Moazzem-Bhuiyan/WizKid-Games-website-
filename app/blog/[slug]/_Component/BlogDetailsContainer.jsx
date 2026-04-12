@@ -4,21 +4,22 @@ import Link from 'next/link'
 import { notFound, useSearchParams } from 'next/navigation'
 import { ArrowLeft, Calendar, User } from 'lucide-react'
 import { blogPosts, getPostBySlug } from '../../../../lib/blog'
+import UsegetBlog from '../../../../Hooks/useGetBlog'
 
 
 
-export async function generateStaticParams() {
-  return blogPosts.map(post => ({ slug: post.slug }))
-}
+// export async function generateStaticParams() {
+//   return blogPosts.map(post => ({ slug: post.slug }))
+// }
 
-export async function generateMetadata({ params }) {
-  const post = getPostBySlug(params?.slug)
-  if (!post) return {}
-  return {
-    title: `${post.title} – WizKid Games Dev Blog`,
-    description: post.excerpt,
-  }
-}
+// export async function generateMetadata({ params }) {
+//   const post = getPostBySlug(params?.slug)
+//   if (!post) return {}
+//   return {
+//     title: `${post.title} – WizKid Games Dev Blog`,
+//     description: post.excerpt,
+//   }
+// }
 
 function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
@@ -77,8 +78,9 @@ function renderContent(content) {
 }
 
 export default  function BlogPostPage({ params }) {
-   const { slug } = params;
-   const post = getPostBySlug(slug);
+  const {blog ,loading:blogLoading}= UsegetBlog();
+   console.log("🚀 ~ BlogPostPage ~ blog:", blog)
+   const post = blog?.data?.data?.[0];
   if (!post) notFound()
 
   return (
@@ -105,12 +107,12 @@ export default  function BlogPostPage({ params }) {
               className="font-heading text-xs tracking-widest uppercase px-3 py-1 border"
               style={{ color: 'var(--gold)', borderColor: 'rgba(201,168,76,0.3)', background: 'rgba(201,168,76,0.05)', letterSpacing: '0.2em', fontSize: '0.65rem' }}
             >
-              {post.category}
+             Studio Update
             </span>
             <div className="flex items-center gap-2">
               <Calendar size={10} style={{ color: 'var(--mist)' }} />
               <span className="font-body text-xs" style={{ color: 'var(--mist)', fontSize: '0.8rem' }}>
-                {formatDate(post.date)}
+                {formatDate(post.createdAt)}
               </span>
             </div>
           </div>
@@ -122,7 +124,7 @@ export default  function BlogPostPage({ params }) {
           <div className="flex items-center gap-2 mb-8">
             <User size={10} style={{ color: 'var(--mist)' }} />
             <span className="font-body text-sm" style={{ color: 'var(--mist)', fontSize: '0.85rem' }}>
-              {post.author}
+              WizKid Games Team
             </span>
           </div>
 
@@ -131,7 +133,7 @@ export default  function BlogPostPage({ params }) {
 
         {/* Body */}
         <div className="prose-wizkid">
-          {renderContent(post.content)}
+          {renderContent(post.description)}
         </div>
 
         {/* Footer */}

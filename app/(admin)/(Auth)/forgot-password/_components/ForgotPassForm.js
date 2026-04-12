@@ -1,0 +1,71 @@
+'use client';
+
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import UInput from '../../../../../components/Form/UInput';
+import FormWrapper from '../../../../../components/Form/FormWrapper';
+import { Button } from 'antd';
+import { ArrowLeft } from 'lucide-react';
+
+export default function ForgotPassForm() {
+  const router = useRouter();
+  const onSubmit = async (data) => {
+    // try {
+    //   const res = await forgetPassword(data).unwrap();
+    //   if (res?.success) {
+    //     toast.success(res?.message);
+    //     localStorage.setItem("forgetPasswordToken", res?.data?.token);
+    //     router.push("/otp-verification");
+    //   }
+    // } catch (error) {
+    //   if (error?.data?.message) {
+    //     toast.error(error?.data?.message);
+    //   } else {
+    //     toast.error("Something went wrong");
+    //   }
+    // }
+  };
+
+  return (
+    <div className="w-full rounded-md border bg-white px-6 py-8">
+      <Link
+        href="/login"
+        className="flex-center-start mb-4 gap-x-2 font-medium text-white hover:text-primary-blue/85"
+      >
+        <ArrowLeft size={18} /> Back to login
+      </Link>
+
+      <section className="mb-8 flex flex-col items-center justify-center space-y-2">
+        {/* <Image src={logo} alt="logo" width={100} height={100} /> */}
+        <h4 className="text-3xl font-semibold">Forgot Password</h4>
+        <p className="text-center">
+          Enter your email and we&apos;ll send you an otp for verification
+        </p>
+      </section>
+
+      <FormWrapper onSubmit={onSubmit}>
+        <UInput
+          name="email"
+          type="email"
+          label="Email"
+          labelStyles={{ fontWeight: '500' }}
+          placeholder="Enter your email"
+          size="large"
+          className="!h-10"
+        />
+
+        <Button
+          type="primary"
+          size="large"
+          className="!h-10 w-full !font-semibold"
+          htmlType="submit"
+          style={{
+            background: '#000000',
+          }}
+        >
+          Submit
+        </Button>
+      </FormWrapper>
+    </div>
+  );
+}

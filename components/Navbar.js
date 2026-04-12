@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
-import logo from '../assets/Logo/wizkid logo.svg'
-import Image from 'next/image'
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
+import logo from '../assets/Logo/wizkid logo.svg';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -13,22 +13,22 @@ const navLinks = [
   { href: '/blog', label: 'Dev Blog' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
-]
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
-    setMobileOpen(false)
-  }, [pathname])
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -47,18 +47,27 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <div className="w-10 h-10  flex items-center justify-center"
-                  style={{ borderColor: 'var(--gold-dark)' }}>
-                  <span className="font-display text-xs" style={{ color: 'var(--gold)', fontSize: '10px' }}>
+                <div
+                  className="w-10 h-10  flex items-center justify-center"
+                  style={{ borderColor: 'var(--gold-dark)' }}
+                >
+                  <span
+                    className="font-display text-xs"
+                    style={{ color: 'var(--gold)', fontSize: '10px' }}
+                  >
                     <Image src={logo} alt="WizKid Games" width={40} height={40} />
                   </span>
                 </div>
-                <div className="absolute inset-0 opacity-0  transition-opacity duration-300"
-                  style={{ boxShadow: '0 0 20px rgba(201,168,76,0.4)' }} />
+                <div
+                  className="absolute inset-0 opacity-0  transition-opacity duration-300"
+                  style={{ boxShadow: '0 0 20px rgba(201,168,76,0.4)' }}
+                />
               </div>
               <div>
-                <span className="font-heading text-sm font-semibold tracking-widest uppercase"
-                  style={{ color: 'var(--gold)', letterSpacing: '0.15em' }}>
+                <span
+                  className="font-heading text-sm font-semibold tracking-widest uppercase"
+                  style={{ color: 'var(--gold)', letterSpacing: '0.15em' }}
+                >
                   WizKid Games
                 </span>
               </div>
@@ -135,5 +144,5 @@ export default function Navbar() {
         </div>
       </div>
     </>
-  )
+  );
 }
