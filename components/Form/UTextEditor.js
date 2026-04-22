@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { Controller } from "react-hook-form";
-import { Form } from "antd";
-import dynamic from "next/dynamic";
+import { Controller } from 'react-hook-form';
+import { Form } from 'antd';
+import dynamic from 'next/dynamic';
 
-const JoditEditor = dynamic(() => import("jodit-react"), {
+const JoditEditor = dynamic(() => import('jodit-react'), {
   ssr: false,
 });
 
@@ -14,16 +14,11 @@ export default function UTextEditor({ name, label, placeholder }) {
       name={name}
       defaultValue=""
       render={({ field, fieldState: { error } }) => (
-        <Form.Item
-          label={label}
-          validateStatus={error ? "error" : ""}
-          help={error?.message}
-        >
+        <Form.Item label={label} validateStatus={error ? 'error' : ''} help={error?.message}>
           <JoditEditor
-            value={field.value || ""}
-
+            value={field.value || ''}
             config={{
-              height: 500,
+              height: 600,
               placeholder: placeholder,
               readonly: false,
               toolbarAdaptive: false,
@@ -35,7 +30,6 @@ export default function UTextEditor({ name, label, placeholder }) {
                 insertImageAsBase64URI: true,
               },
             }}
-
             // 🔥 IMPORTANT FIX
             onBlur={(newContent) => {
               field.onChange(newContent);
